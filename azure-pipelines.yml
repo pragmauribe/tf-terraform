@@ -9,7 +9,8 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  bkcontainer: 'tfstate'
+  tfstate: 'terraform.tfstate'
+  tfbucket: 'tf-azure-terraform-state'
 
 stages:
   - stage: tfvalidate
@@ -18,9 +19,42 @@ stages:
         continueOnError: false
         steps:
           - task: TerraformInstaller@0
-            displayName: install          
+            displayName: 'install'          
             inputs:
               terraformVersion: 'latest'
+          - task: TerraformTaskV3@3
+            displayName: 'init'
+            inputs:
+              provider: 'aws'
+              command: 'init'
+              backendServiceAWS: 'terraform'
+              backendAWSBucketName: '$(tfbucket)'
+              backendAWSKey: '$(tfstate)'
+          - task: TerraformTaskV3@3
+            displayName: 'validate'
+            inputs:
+              provider: 'aws'
+              command: 'validate'
+  - stage: tfdeploy
+    condition: succeeded('tfvalidate')
+    dependsOn: tfvalidate
+    jobs:
+      - job: apply
+        steps:
+          - task: TerraformInstaller@0
+            displayName: 'install'          
+            inputs:
+              terraformVersion: 'latest'
+          - task: TerraformTaskV3@3
+            displayName: 'plan'
+            inputs:
+              provider: 'aws'
+              command: 'plan'
+          - task: TerraformTaskV3@3
+            inputs:
+              provider: 'aws'
+              command: 'apply'
+              environmentServiceNameAWS: 'terraform'
           
-        
+
           
