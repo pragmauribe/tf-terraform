@@ -41,7 +41,7 @@ stages:
     jobs:
       - job: apply
         steps:
-          - task: TerraformInstaller@1
+          - task: TerraformInstaller@0
             displayName: 'install'          
             inputs:
               terraformVersion: 'latest'
@@ -51,10 +51,8 @@ stages:
               provider: 'aws'
               command: 'plan'
           - task: TerraformTaskV3@3
+            displayName: 'apply'
             inputs:
               provider: 'aws'
               command: 'apply'
               environmentServiceNameAWS: 'terraform'
-          
-
-          
