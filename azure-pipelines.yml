@@ -9,7 +9,7 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  tfstate: 'terraform.tfstate'
+  tfstate: 'tfstate.tf'
   tfbucket: 'tf-azure-tf-state'
 
 stages:
