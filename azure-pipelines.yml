@@ -46,6 +46,14 @@ stages:
             inputs:
               terraformVersion: 'latest'
           - task: TerraformTaskV3@3
+            displayName: 'init'
+            inputs:
+              provider: 'aws'
+              command: 'init'
+              backendServiceAWS: 'terraform'
+              backendAWSBucketName: '$(tfbucket)'
+              backendAWSKey: '$(tfstate)'
+          - task: TerraformTaskV3@3
             displayName: 'plan'
             inputs:
               provider: 'aws'
