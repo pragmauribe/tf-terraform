@@ -10,7 +10,7 @@ pool:
 
 variables:
   tfstate: 'terraform.tfstate'
-  tfbucket: 'tf-azure-terraform-state'
+  tfbucket: 'tf-azure-tf-state'
 
 stages:
   - stage: tfvalidate
