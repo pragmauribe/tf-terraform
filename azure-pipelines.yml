@@ -60,7 +60,7 @@ stages:
               command: 'plan'
               environmentServiceNameAWS: 'terraform'
           - task: TerraformTaskV3@3
-            displayName: 'apply'
+            displayName: 'destroy'
             inputs:
               provider: 'aws'
               command: 'apply'
