@@ -18,7 +18,7 @@ stages:
       - job: validate
         continueOnError: false
         steps:
-          - task: TerraformInstaller@0
+          - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
             displayName: 'install'
             inputs:
               terraformVersion: 'latest'
@@ -60,7 +60,7 @@ stages:
               command: 'plan'
               environmentServiceNameAWS: 'terraform'
           - task: TerraformTaskV3@3
-            displayName: 'destroy'
+            displayName: 'apply'
             inputs:
               provider: 'aws'
               command: 'apply'
