@@ -36,7 +36,7 @@ stages:
               provider: 'aws'
               command: 'validate'
   - stage: tfapply
-    condition: succeed('tfvalidate')
+    condition: succeeded('tfvalidate')
     dependsOn: tfvalidate
     jobs:
       - job: apply
