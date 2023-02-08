@@ -27,7 +27,7 @@ stages:
             inputs:
               provider: 'aws'
               command: 'init'
-              backendServiceAWS: 'AWS conecction'
+              backendServiceAWS: 'tf'
               backendAWSBucketName: '$(tfbucket)'
               backendAWSKey: '$(tfstate)'
           - task: TerraformTaskV3@3
@@ -50,7 +50,7 @@ stages:
             inputs:
               provider: 'aws'
               command: 'init'
-              backendServiceAWS: 'terraform'
+              backendServiceAWS: 'tf'
               backendAWSBucketName: '$(tfbucket)'
               backendAWSKey: '$(tfstate)'
           - task: TerraformTaskV3@3
