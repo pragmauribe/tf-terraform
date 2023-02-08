@@ -58,11 +58,11 @@ stages:
             inputs:
               provider: 'aws'
               command: 'plan'
-              environmentServiceNameAWS: 'terraform'
+              environmentServiceNameAWS: 'tf'
           - task: TerraformTaskV3@3
             displayName: 'apply'
             inputs:
               provider: 'aws'
               command: 'apply'
               commandOptions: '-auto-approve'
-              environmentServiceNameAWS: 'terraform'
+              environmentServiceNameAWS: 'tf'
