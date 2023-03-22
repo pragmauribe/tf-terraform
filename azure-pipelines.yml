@@ -6,7 +6,7 @@
 trigger: none
 
 pool:
-  vmImage: ubuntu
+  vmImage: default
 
 variables:
   tfstate: 'tfstate.tf'
