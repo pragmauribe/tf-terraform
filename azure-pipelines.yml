@@ -6,7 +6,7 @@
 trigger: none
 
 pool:
-  Default: ubuntu
+  name: Default
 
 variables:
   tfstate: 'tfstate.tf'
